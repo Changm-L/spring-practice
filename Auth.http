@@ -1,0 +1,17 @@
+### 테스트 API
+POST http://localhost:8080/auth/test
+Content-Type: application/json
+
+{
+  "id": "test2",
+  "password": 1234
+}
+
+### 로그인 API
+POST http://localhost:8080/auth/log-in
+Content-Type: application/json
+
+{
+  "id": "test",
+  "password": 1234
+}

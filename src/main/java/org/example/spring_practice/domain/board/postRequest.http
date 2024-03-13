@@ -1,0 +1,12 @@
+### 게시판 Request
+POST http://localhost:8080/post/list
+Content-Type: application/json
+
+{
+  "title": "test",
+  "content": "이런 내용 쓰면 들어가나?"
+}
+
+### get list by id
+GET http://localhost:8080/post/1
+Content-Type: application/json
