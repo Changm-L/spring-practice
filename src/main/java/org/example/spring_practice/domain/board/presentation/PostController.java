@@ -12,6 +12,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/post")
@@ -27,21 +29,15 @@ public class PostController {
     }
 
     @PostMapping("/list")
-    public ResponseDto<Object> list(@Valid @RequestBody PostDto postDto) {
-        Post post = Post.builder()
-                .title(postDto.getTitle())
-                .content(postDto.getContent())
-                .build();
-
-        postService.save(post);
+    public ResponseDto<Object> list(@Valid @RequestBody PostDto postRequest) {
+        postService.save(postRequest.toEntity());
         return ResponseDto.of(201, "Success", null);
     }
 
     @PutMapping("/{id}")
-    public ResponseDto<Object> update(@PathVariable Long id, @Valid @RequestBody PostDto postDto) {
+    public ResponseDto<Object> update(@PathVariable Long id, @Valid @RequestBody PostDto postRequest) {
+        postService.update(id, postRequest);
         return ResponseDto.of(201, "Success", null);
     }
-
-
 }
 

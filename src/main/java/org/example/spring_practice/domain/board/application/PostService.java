@@ -1,5 +1,6 @@
 package org.example.spring_practice.domain.board.application;
 
+import org.example.spring_practice.domain.board.dto.PostDto;
 import org.example.spring_practice.domain.board.entity.Post;
 import org.example.spring_practice.domain.board.entity.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +22,15 @@ public class PostService {
         return postRepository.findAll();
     }
 
-    public Optional<Post> getPostById(Long id) {
-        return postRepository.findById(id);
+    public Post getPostById(Long id) {
+        return postRepository.findById(id).orElseThrow();
     }
 
-    public void udate(Post post) {
-//        post.update()
+    public void update(Long id, PostDto postDto) {
+        Post post = postRepository.findById(id).orElseThrow();
+        Post updateValue = postDto.toEntity();
+        post.update(updateValue);
+        postRepository.save(post);
     }
 
     public void deletePost(Long id) {

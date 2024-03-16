@@ -10,3 +10,13 @@ Content-Type: application/json
 ### get list by id
 GET http://localhost:8080/post/1
 Content-Type: application/json
+
+
+### 게시물 수정
+PUT http://localhost:8080/post/1
+Content-Type: application/json
+
+{
+  "title": "",
+  "content": "이런거로 수정"
+}

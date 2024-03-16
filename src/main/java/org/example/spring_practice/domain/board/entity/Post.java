@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
@@ -21,12 +23,15 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotEmpty(message = "제목은 필수값입니다.")
     @Column(nullable = false, columnDefinition = "text")
     private String title;
 
+    @NotEmpty(message = "내용은 필수값입니다.")
     @Column(nullable = false, columnDefinition = "text")
     private String content;
 
+    @NotEmpty
     @CreationTimestamp
     @Column(name = "insert_date", nullable = false)
     private LocalDateTime insertDate;
@@ -37,4 +42,9 @@ public class Post {
 
     @Column(nullable = false)
     private int views;
+
+    public void update(Post updateValue) {
+        this.title = updateValue.title;
+        this.content = updateValue.content;
+    }
 }
