@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
@@ -24,10 +25,14 @@ public class Post {
     private long id;
 
     @NotEmpty(message = "제목은 필수값입니다.")
+    @NotBlank(message = "제목은 필수값입니다.")
+    @NotNull(message = "제목은 필수값입니다.")
     @Column(nullable = false, columnDefinition = "text")
     private String title;
 
     @NotEmpty(message = "내용은 필수값입니다.")
+    @NotBlank(message = "내용은 필수값입니다.")
+    @NotNull(message = "내용은 필수값입니다.")
     @Column(nullable = false, columnDefinition = "text")
     private String content;
 
