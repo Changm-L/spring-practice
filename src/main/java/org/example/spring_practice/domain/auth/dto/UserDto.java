@@ -1,10 +1,10 @@
 package org.example.spring_practice.domain.auth.dto;
 
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import javax.validation.constraints.Size;
 @Data
 @Getter
 @Setter

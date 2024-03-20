@@ -1,13 +1,12 @@
 package org.example.spring_practice.domain.board.application;
 
-import org.example.spring_practice.domain.board.dto.PostDto;
+import org.example.spring_practice.domain.board.application.dto.PostRequest;
 import org.example.spring_practice.domain.board.entity.Post;
 import org.example.spring_practice.domain.board.entity.PostRepository;
 import org.example.spring_practice.domain.board.exception.PostNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PostService {
@@ -27,7 +26,7 @@ public class PostService {
         return postRepository.findByEntity(id);
     }
 
-    public void update(Long id, PostDto postDto) {
+    public void update(Long id, PostRequest postDto) {
         Post post = postRepository.findByEntity(id);
         Post updateValue = postDto.toEntity();
         post.update(updateValue);

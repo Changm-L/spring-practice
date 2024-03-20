@@ -1,4 +1,4 @@
-package org.example.spring_practice.domain.board.dto;
+package org.example.spring_practice.domain.board.application.dto;
 
 import lombok.*;
 import org.example.spring_practice.domain.board.entity.Post;
@@ -10,7 +10,7 @@ import org.example.spring_practice.domain.board.entity.Post;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PostDto {
+public class PostRequest {
     private String title;
     private String content;
 

@@ -1,20 +1,13 @@
 package org.example.spring_practice.domain.board.presentation;
 
-import org.apache.coyote.Response;
+import jakarta.validation.Valid;
 import org.example.spring_practice._common.dto.ResponseDto;
 import org.example.spring_practice.domain.board.application.PostService;
-import org.example.spring_practice.domain.board.dto.PostDto;
-import org.example.spring_practice.domain.board.entity.Post;
-import org.example.spring_practice.domain.board.entity.PostRepository;
+import org.example.spring_practice.domain.board.application.dto.PostRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/post")
@@ -35,13 +28,13 @@ public class PostController {
     }
 
     @PostMapping("/list")
-    public ResponseDto<Object> list(@Valid @RequestBody PostDto postRequest) {
+    public ResponseDto<Object> list(@Valid @RequestBody PostRequest postRequest) {
         postService.save(postRequest.toEntity());
         return ResponseDto.of(HttpStatus.OK, "Success", null);
     }
 
     @PutMapping("/{id}")
-    public ResponseDto<Object> update(@PathVariable Long id, @Valid @RequestBody PostDto postRequest) {
+    public ResponseDto<Object> update(@PathVariable Long id, @RequestBody @Valid PostRequest postRequest) {
         postService.update(id, postRequest);
         return ResponseDto.of(HttpStatus.CREATED, "Success", null);
     }
